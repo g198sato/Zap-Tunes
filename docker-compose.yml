@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  app:
+    ports:
+      #ローカルの${WEB_PORT}番ポートをapacheコンテナの80番ポートに設定
+      - ${WEB_PORT}:80
+      #Viteのためのポート開放
+      - ${VITE_PORT}:5173
+    build:
+      context: .
+      dockerfile: ./docker/app/Dockerfile
+    container_name: portfolio1_app
+    volumes:
+      - ./src/:/var/www/html
+    depends_on:
+      - db
+
+  db:
+    image: mysql:5.7
+    container_name: portfolio1_db
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8 --collation-server=utf8_unicode_ci
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+      - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+    ports:
+      - ${DB_PORT}:3306
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:5
+    container_name: phpmyadmin
+    links:
+      - db
+    ports:
+      - ${PHPMYADMIN_PORT}:80
+    volumes:
+      - ./docker/phpmyadmin/sessions:/sessions
