@@ -83,12 +83,13 @@ import { nextTick } from 'vue';
 
         watch: {
             currentTime: function() {
-                console.log('「'+this.nextMusic.id+'currentTime:'+this.currentTime);
-                console.log(this.nextMusic.id+'highlight:'+this.highlight);
+                //デバッグ用
+                //console.log('「'+this.nextMusic.id+'currentTime:'+this.currentTime);
+                //console.log(this.nextMusic.id+'highlight:'+this.highlight);
                 if(this.onlyHighlight &&
                    this.currentTime - this.highlight > 15){ //TODO:ハードコーディングの解消
 
-                    console.log('currentTime-highlightが15秒を超えました」');
+                    //console.log('currentTime-highlightが15秒を超えました」'); デバッグ用
                     this.currentTime = 0;
                     this.highlight = 0;
                     this.next();
@@ -120,7 +121,7 @@ import { nextTick } from 'vue';
 
             //曲が最後まで再生された場合，次の曲を再生する
             this.music.addEventListener('ended', () => {
-                console.log('曲が最後まで再生されました');
+                //console.log('曲が最後まで再生されました'); //デバッグ用
                 this.currentTime = 0;
                 this.highlight = 0;
                 this.next();
@@ -157,16 +158,16 @@ import { nextTick } from 'vue';
 
             //nextボタンを押した時の処理
             next(){
-                console.log('next()');
+                //console.log('next()');
                 axios.get(`/next/${this.selectedGenreMasterId}`)
                     .then(
                         response => {
-                            console.log(response);
+                            //console.log(response);
 
                             this.setNextMusic(response);
                             //曲の読み込みが終わったらそれを再生
                             this.music.addEventListener('loadeddata', () =>{
-                                console.log('曲のロードが終わりました');
+                                //console.log('曲のロードが終わりました');
                                 this.play();
                             }, {once: true});
                         }

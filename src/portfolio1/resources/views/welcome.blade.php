@@ -31,28 +31,20 @@
                         <li>
                             画面左上の<a href={{ route('upload') }}>Upload</a>から，楽曲をアップロードすることができます．
                         </li>
-                    </ol>
+                    </ul>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
             <div class="card mb-4">
                 <div class="card-header">
                     GitHub
                 </div>
                 
                 <div class="card-body">
-                    <a href="">ここにリンク</a>
+                    <a href="https://github.com/g198sato/Zap-Tunes">https://github.com/g198sato/Zap-Tunes</a>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
             <div class="card mb-4">
                 <div class="card-header">
                     使用技術等
@@ -111,11 +103,7 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
             <div class="card mb-4">
                 <div class="card-header">
                     データベース
@@ -137,11 +125,7 @@
                     </ul>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
             <div class="card mb-4">
                 <div class="card-header">
                     クレジット表記
@@ -153,7 +137,6 @@
             </div>
         </div>
     </div>
-
 </div>
 
 
