@@ -132,7 +132,14 @@
                 </div>
                 
                 <div class="card-body">
-                    サンプル用のデータとして，BGMer様(<a href="https://bgmer.net/">https://bgmer.net/</a>)の楽曲を利用しています．
+                    <ul>
+                        <li>
+                            サンプル用のデータとして，BGMer様(<a href="https://bgmer.net/">https://bgmer.net/</a>)の楽曲を利用しています．
+                        </li>
+                        <li>
+                            ガイド音声として，音読さん<a href="https://ondoku3.com">(https://ondoku3.com)</a>を利用しています．
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>

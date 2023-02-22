@@ -32,6 +32,9 @@
                         <li>
                             次の曲ボタン<span class="btn btn-primary"><i class="fas fa-fast-forward fa-1x"></i></span>をクリックすると，即座に次の楽曲が再生されます．
                         </li>
+                        <li>
+                            一度再生された曲が再度選曲されることはありません．再度選曲されるようにするためには，<button class="btn btn-success">再生履歴を消去する</button>をクリックしてください．
+                        </li>
                     </ul>
                 </div>
             </div>

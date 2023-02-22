@@ -31,7 +31,7 @@ Route::get('/upload' , [App\Http\Controllers\UploadController::class, 'index'])-
 Route::post('/upload', [App\Http\Controllers\UploadController::class, 'upload'])->middleware('auth');
 
 //曲データの読み込み
-Route::get('/next/{selected_genre_id}', 'App\Http\Controllers\SongController@next'); //nextボタン押下時・再生の完了時
+Route::get('/next', 'App\Http\Controllers\SongController@next'); //nextボタン押下時・再生の完了時
 Route::get('/mounted', 'App\Http\Controllers\SongController@mounted'); //ページがロードされた時
 
 //全てのジャンル名の読み込み
