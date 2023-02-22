@@ -53,7 +53,12 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    <div class="row justify-content-center">
+                                        <div class="col-md-8">
+                                            <button v-if="played.length >= 2" @click="resetHistory" class="btn btn-success">再生履歴を消去する</button>
+                                            <button v-else class="btn btn-secondary disabled">再生履歴を消去する</button>
+                                        </div>
+                                    </div>
                                 </div>
                         </div>
                     </div>
@@ -78,6 +83,7 @@ import { nextTick } from 'vue';
                 onlyHighlight: true, //ハイライト位置のみ再生するならtrue
                 currentTime: 0,
                 highlight: 0,
+                played: [0],
             } 
         },
 
@@ -104,11 +110,15 @@ import { nextTick } from 'vue';
                         this.nextMusic = response.data;
                         this.highlight = this.nextMusic.highlight;
                         this.music.src = `/storage/music/${this.nextMusic.id}.mp3`;
+                        this.played.push(response.data.id);
 
                         //ハイライト開始位置から再生する
                         if(this.onlyHighlight){
                             this.music.currentTime = this.nextMusic.highlight;
                         }
+
+                        //ジャンル選択のラジオボタンの初期位置を，最も再生数の少ない曲のものに合わせる
+                        this.selectedGenreMasterId = this.nextMusic.genre_master_id;
                     }
                 );
 
@@ -159,12 +169,19 @@ import { nextTick } from 'vue';
             //nextボタンを押した時の処理
             next(){
                 //console.log('next()');
-                axios.get(`/next/${this.selectedGenreMasterId}`)
+                axios.get('/next', {
+                    params: {
+                        selected_genre_id: this.selectedGenreMasterId,
+                        except: this.played,
+                    }
+                })
                     .then(
                         response => {
                             //console.log(response);
 
                             this.setNextMusic(response);
+                            this.played.push(this.nextMusic.id);
+                            console.log(this.played);
                             //曲の読み込みが終わったらそれを再生
                             this.music.addEventListener('loadeddata', () =>{
                                 //console.log('曲のロードが終わりました');
@@ -179,7 +196,23 @@ import { nextTick } from 'vue';
 
             //axiosで取得した次の曲を再生できるようにaudioオブジェクトのソースを書き換える
             setNextMusic(response){
-                this.nextMusic = response.data;
+                if(response.data != ""){
+                    this.nextMusic = response.data;
+                }
+                else{
+                    //該当する曲が存在しない場合，その旨を伝える音声を再生する
+                    this.nextMusic = {
+                        user_id: 0,
+                        song_name : "該当曲なし",
+                        plays: 0,
+                        name: "",
+                        link:"",
+                        id: 0,
+                        highlight: 0,
+                        genre_master_id: 0,
+                    };
+                }
+                console.log(this.nextMusic);
                 this.music.src = `/storage/music/${this.nextMusic.id}.mp3`;
                 
                 //ハイライト開始位置から再生する
@@ -201,6 +234,11 @@ import { nextTick } from 'vue';
                             this.allGenreMasters = response.data;
                         }
                     );
+            },
+
+            //再生履歴の消去
+            resetHistory(){
+                this.played = [0];
             },
         }
     }
