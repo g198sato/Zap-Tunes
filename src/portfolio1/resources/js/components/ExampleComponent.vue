@@ -181,7 +181,7 @@ import { nextTick } from 'vue';
 
                             this.setNextMusic(response);
                             this.played.push(this.nextMusic.id);
-                            console.log(this.played);
+                            //console.log(this.played);
                             //曲の読み込みが終わったらそれを再生
                             this.music.addEventListener('loadeddata', () =>{
                                 //console.log('曲のロードが終わりました');
@@ -212,7 +212,7 @@ import { nextTick } from 'vue';
                         genre_master_id: 0,
                     };
                 }
-                console.log(this.nextMusic);
+                //console.log(this.nextMusic);
                 this.music.src = `/storage/music/${this.nextMusic.id}.mp3`;
                 
                 //ハイライト開始位置から再生する
