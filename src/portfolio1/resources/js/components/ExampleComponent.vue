@@ -190,7 +190,7 @@ import { nextTick } from 'vue';
                         }
                     )
                     .catch(error => {
-                        console.log(error);
+                        //console.log(error);
                     });
             },
 
