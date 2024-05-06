@@ -18,17 +18,17 @@ RUN apt-get install -y nodejs
 
 # ミドルウェアのインストール
 RUN apt-get update \
-&& apt-get install -y \
-git \
-zip \
-unzip \
-vim \
-libpng-dev \
-libpq-dev \
-&& docker-php-ext-install pdo_mysql
+    && apt-get install -y \
+    git \
+    zip \
+    unzip \
+    vim \
+    libpng-dev \
+    libpq-dev \
+    && docker-php-ext-install pdo_mysql
 
 # Laravelで必要になるmodRewriteを有効化する
 RUN mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled
 RUN /bin/sh -c a2enmod rewrite
 
-WORKDIR /var/www/html/portfolio1
+WORKDIR /var/www/html/Zap-Tunes
