@@ -31,4 +31,10 @@ RUN apt-get update \
 RUN mv /etc/apache2/mods-available/rewrite.load /etc/apache2/mods-enabled
 RUN /bin/sh -c a2enmod rewrite
 
+# TLS有効化
+ADD ./docker/app/default-ssl.conf /etc/apache2/sites-available/default-ssl.conf
+ADD ./docker/app/fqdn.conf /etc/apache2/conf-available/fqdn.conf
+RUN a2enconf fqdn
+RUN a2enmod rewrite
+
 WORKDIR /var/www/html/Zap-Tunes

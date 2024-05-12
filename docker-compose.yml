@@ -11,8 +11,14 @@ services:
     container_name: Zap-Tunes_app
     volumes:
       - ./src/:/var/www/html
+      # シェルスクリプト用ディレクトリ
+      - ./scripts:/root/scripts
     depends_on:
       - db
+    environment:
+      - TZ=Asia/Tokyo
+      - APACHE_DOCUMENT_ROOT=/var/www/html/Zap-Tunes/public
+      - APP_DOMAIN=localhost
 
   db:
     image: mysql:5.7
