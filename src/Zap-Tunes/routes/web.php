@@ -36,17 +36,3 @@ Route::get('/mounted', 'App\Http\Controllers\SongController@mounted'); //ペー�
 
 //全てのジャンル名の読み込み
 Route::get('/get_all_genre_masters', 'App\Http\Controllers\GenreMasterController@get_all_genre_masters');
-
-//中間テーブルのデバッグ用
-/*
-Route::get('/pivot', function(){
-    $song = Song::find(2);
-    foreach ($song->genre_masters as $genre_master) {
-        echo $genre_master->pivot;
-    }
-    $genre_master = GenreMaster::find(1);
-    foreach($genre_master->songs as $song){
-        echo $song->pivot;
-    }
-});
-*/
