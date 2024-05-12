@@ -15,8 +15,8 @@ import { createApp } from 'vue';
 
 const app = createApp({});
 
-import ExampleComponent from './components/ExampleComponent.vue';
-app.component('example-component', ExampleComponent);
+import PlayerComponent from './components/PlayerComponent.vue';
+app.component('example-component', PlayerComponent);
 import UploadComponent from './components/UploadComponent.vue';
 app.component('upload-component', UploadComponent);
 
