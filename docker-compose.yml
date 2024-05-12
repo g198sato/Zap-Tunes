@@ -18,7 +18,7 @@ services:
     environment:
       - TZ=Asia/Tokyo
       - APACHE_DOCUMENT_ROOT=/var/www/html/Zap-Tunes/public
-      - APP_DOMAIN=localhost
+      - APP_DOMAIN=${APP_DOMAIN}
 
   db:
     image: mysql:5.7
