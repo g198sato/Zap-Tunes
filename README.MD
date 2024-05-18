@@ -11,6 +11,7 @@
 | PHP            |     8.0.30 |
 | Laravel        |     9.47.0 |
 | MySQL          |     5.7.44 |
+| Vue.js         |     3.2.45 |
 | Docker         |     23.0.0 |
 | Docker Compose |     2.15.1 |
 
